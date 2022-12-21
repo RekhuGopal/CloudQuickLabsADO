@@ -4,13 +4,13 @@ Write-Host ' reflect Azure Devops repo changes to GitHub repo'
 Write-Host ' - - - - - - - - - - - - - - - - - - - - - - - - - '
 $stageDir = '$(Build.SourcesDirectory)' | Split-Path
 $githubDir = $stageDir +"\"+"gitHub"
-$destination = $githubDir +"\"+"<azure-repo-name>.git"
+$destination = $githubDir +"\"+"$(azure-repo-name).git"
 #please provide your username
-$alias = '<userName>:'+ "$(Github.PAT)"
+$alias = '$(userName):'+ "$(Github.PAT)"
 #Please make sure, you remove https from azure-repo-clone-url
-$sourceURL = 'https://$(AzureDevOps.PAT)@<azure-repo-clone-url>'
+$sourceURL = 'https://$(AzureDevOps.PAT)@$(azure-repo-clone-url)'
 #Please make sure, you remove https from github-repo-clone-url
-$destURL = 'https://' + $alias + '@<github-repo-clone-url>'
+$destURL = 'https://' + $alias + '@$(github-repo-clone-url)'
 #Check if the parent directory exists and delete
 if((Test-Path -path $githubDir))
 {
